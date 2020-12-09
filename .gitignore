@@ -1,5 +1,10 @@
 CMakeLists.txt
+.DS_Store
 
+*.zip
+*.pdf
 *.swp
 *.dSYM/
 build/
+*/build/
+

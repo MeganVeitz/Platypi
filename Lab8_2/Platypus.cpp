@@ -23,7 +23,7 @@ Platypus::Platypus(){
    alive = 0;
 }
 
-//initialized funtion (I think..)
+//initialized funtion 
 Platypus::Platypus(char initGender, float initWeight, short initAge, string initNameString){
    if((initGender == 'M'|| initGender == 'm' || initGender == 'F' || initGender == 'f')
       && initWeight >= 0
@@ -192,6 +192,14 @@ void Platypus::hatch(){
 void Platypus::make_dead(){
    set_alive(0);
 }
+
+//Steve made
+void Platypus::randomize(){
+   age = (rand()%36);
+   alive = 1;
+   set_nameString("P");
+}
+
 
 //Meg created
 bool Platypus::mate(Platypus & p2) {

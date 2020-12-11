@@ -20,6 +20,7 @@ class Platypus{
       Platypus();
       //Parameterized 
       Platypus(char, float, short, std::string);
+      string getName();
 
       //Display
       void print();
@@ -32,6 +33,7 @@ class Platypus{
       //Meg made new function 
       void do_something(Platypus*, Platypus*, Platypus*, Platypus*, bool);
       bool mate(Platypus & p2);// Meg made
+      void randomize(); //Steve made
       
       //Access function values
       short get_age();
@@ -43,6 +45,7 @@ class Platypus{
       bool get_egg();
       
       //Set function values
+    
       void make_dead();
       void set_age(short newAge);
       void set_nameString(std::string newString);
@@ -51,6 +54,7 @@ class Platypus{
       void set_alive(bool newAlive);
       void set_mutant(bool newMutant);
       void set_egg(bool NewEgg); //created by meg
+      std::string nameString;
 
    private:
       float weight;
@@ -59,7 +63,6 @@ class Platypus{
       bool alive;  //true(1)=alive, false(0)=dead
       bool mutant; //true=mutant, false=dead
       bool egg;
-      std::string nameString;
 };   
 #endif
 

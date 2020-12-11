@@ -13,24 +13,62 @@
 #include <locale>
 #include "worldClass.h" 
 #include <fstream>
+
 using namespace std;
 
-World::World(){}
-//Constructor for array
-    const int row = 10;
-    const int col = 10;
-    int platArray [row][col];
-
+World::World() {
+    initialize(25);
+}
 //initialize function
-    //Sets all plat to dead, not egg
-    
+void World::initialize(int numPlat = 25){
+      //Sets all plat to dead, not egg
+    //Constructor for array
+    for (int i = 0; i < 10; ++i){
+        for(int j = 0; j < 10; ++j){
+            platArray[i][j] = World::null_platypus;
+        }
+    } 
     //takes 1 paremeter that indicates how many plat should be alive
     //For each one that should be alive - randomly pick a dead plat and call the platypus randomize function to make a live plat
     //then make both predators live and place them randomly in the world
+    int sentinel = 0;
+    while(sentinel < numPlat){
+        int randomRow = (rand()%10);
+        int randomCol = (rand()%10);
+        // Make sure there is nothing else living in this spot
+        if (platArray[randomRow][randomCol].get_alive() != 1){
+            platArray[randomRow][randomCol].hatch();
+            cout << "Making a platypus "<< platArray[randomRow][randomCol].get_nameString() << endl;
+            sentinel ++;
+        }
+    }
+    //homer = Predator("homer", HomerEffency);
+    cout << "Homer's name "<<homer.get_nameString() << endl;
+    //cletus = Predator("cletus", HomerEffency);
+    while(true){
+        int randomRow = (rand()%10);
+        int randomCol = (rand()%10);
+        if (platArray[randomRow][randomCol].get_alive() != 1){
+            platArray[randomRow][randomCol]=Predator("homer", HomerEffency);
+            cout << platArray[randomRow][randomCol].get_nameString() << endl;
+            cout << "Making homer at "<<randomRow<<" "<<randomCol<<endl;
+            break;
+        }
+    }
+    while(true){
+        int randomRow = (rand()%10);
+        int randomCol = (rand()%10);
+        if (platArray[randomRow][randomCol].get_alive() != 1){
+            platArray[randomRow][randomCol]=cletus;
+            break;
+        }
+    }
+}
+
 //count_platypus funciton
 
 //print funciton
-void World::print(){
+void World::printWorld(){
     //char printChar = " ";
 
     // Print array as grid
@@ -41,9 +79,9 @@ void World::print(){
             //if platArray[i][j] != null 
             //printChar = whatToPrint(platArray[i][j]);
             //cout << "|" << printChar << "|";
-			cout << "|" << platArray[i][j] << "|";
+			cout << "|" << platArray[i][j].get_alive();
 		}
-		cout << '\n';
+		cout << "|" << endl;
     }
 }
 

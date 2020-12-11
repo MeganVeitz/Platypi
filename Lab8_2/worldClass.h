@@ -9,27 +9,35 @@
 
 #include <iostream>
 #include <cstring>
+#include "Platypus.h"
+#include "Predator.h"
 
-//#ifndef PLATY_PROG_H_INCLUDED
-//#define PLATY_PROG_H_INCLUDED
+#ifndef WORLD
+#define WORLD
 using namespace std;
 
 class World{
-   private:
-    double Homer = 0.10;
-    double Cletus = 0.25;
-    int HomerX = 0; //Homers location
-    int HomerY = 0;
-    int CletusX = 0; //Cletus's location
-    int CletusY = 0;
-    bool null_platypus = true; //dead platypus holder
+    private:
+        int HomerEffency = 10;
+        Predator homer = Predator("homer", HomerEffency);
+        int CletusEffency = 25;
+        Predator cletus = Predator("cletus", HomerEffency);
+        static const int row = 10;
+        static const int col = 10;
+        Platypus platArray [row][col];
 
-    //Display
-    void print();
+        Platypus null_platypus = Platypus(); //dead platypus holder
+    public:
+        World();
+        //Display
+        void printWorld();
 
-    //Main Functions
-    void count_platypuses();
+        //Main Functions
+        void count_platypuses();
+        void initialize(int);
 
-    //Access
-    int get_count();
+        //Access
+        int get_count();
 };
+
+#endif
